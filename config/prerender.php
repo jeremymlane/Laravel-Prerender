@@ -27,6 +27,22 @@
 
     'prerender_url' => env('PRERENDER_URL', 'https://service.prerender.io'),
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Return soft HTTP status codes
+    |--------------------------------------------------------------------------
+    |
+    | By default Prerender returns soft HTTP codes. If you would like it to
+    | return the real ones in case of Redirection (3xx) or status Not Found (404),
+    | set this parameter to false. 
+    | Keep in mind that returning real HTTP codes requires appropriate meta tags
+    | to be set. For more details, see github.com/prerender/prerender#httpheaders
+    | 
+    */
+
+    'prerender_soft_http_codes' => env('PRERENDER_SOFT_HTTP_STATUS_CODES', true),
+
     /*
     |--------------------------------------------------------------------------
     | Prerender Token
@@ -79,6 +95,7 @@
         '*.png',
         '*.jpg',
         '*.jpeg',
+        '*.svg',
         '*.gif',
         '*.pdf',
         '*.doc',
@@ -109,7 +126,12 @@
         '*.iso',
         '*.flv',
         '*.m4v',
-        '*.torrent'
+        '*.torrent',
+        '*.eot',
+        '*.ttf',
+        '*.otf',
+        '*.woff',
+        '*.woff2'
     ],
 
 
@@ -125,13 +147,10 @@
     */
 
     'crawler_user_agents' => [
-        // googlebot, yahoo, and bingbot are not in this list because
-        // we support _escaped_fragment_ and want to ensure people aren't
-        // penalized for cloaking.
-
-        // 'googlebot',
-        // 'yahoo',
-        // 'bingbot',
+        'googlebot',
+        'yahoo',
+        'bingbot',
+        'yandex',
         'baiduspider',
         'facebookexternalhit',
         'twitterbot',
@@ -145,5 +164,4 @@
         'developers.google.com/+/web/snippet',
         'slackbot',
     ],
-
 ];
